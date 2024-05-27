@@ -3,7 +3,7 @@
 adc_cb_t adc_callback = NULL;
 
 #define ADC12MCTLx_BASE (ADC12_B_BASE + OFS_ADC12MCTL0)
-#define ADC12MCTLx(channel) (ADC12MCTLx_BASE + (2 * channel))
+#define ADC12MCTLx(channel) (uint16_t*)(ADC12MCTLx_BASE + (2 * channel))
 
 void configure_adc(uint16_t resolution, uint16_t interrupts_0, uint16_t interrupts_1,
                    uint16_t interrupts_2, uint8_t start_address)
@@ -45,14 +45,14 @@ void set_window_comparator_voltage(uint16_t low, uint16_t high)
 }
 
 void enable_channel(uint8_t channel, uint16_t input_select, uint16_t vref_select) {
-    ADC12MCTLx(channel) = |= (input_select | vref_select);
+    *(ADC12MCTLx(channel)) |= (input_select | vref_select);
 }
 
 void enable_V_half_comparator_window(uint8_t channel)
 {
     ADC12CTL3 |= ADC12BATMAP; // Internal V 1/2 (V half) selected
     
-    ADC12MCTLx(channel) |= (ADC12WINC | ADC12VRSEL_1 | ADC12INCH_31); // Enable Window Comparator
+    *(ADC12MCTLx(channel)) |= (ADC12WINC | ADC12VRSEL_1 | ADC12INCH_31); // Enable Window Comparator
 }
 
 #if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)

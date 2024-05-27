@@ -65,7 +65,7 @@ void set_window_comparator_voltage(uint16_t low, uint16_t high);
  * initialized properly, by selecting the pin's module function.
  * @param vref_select Select reference voltage.
  */
-void enable_channel(uint8_t channel, uint16_t input_select, uint16_t vref_select) 
+void enable_channel(uint8_t channel, uint16_t input_select, uint16_t vref_select);
 
 /**
  * Enables the voltage window comparator to use the current source voltage divided by 2
