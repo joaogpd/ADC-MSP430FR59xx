@@ -29,14 +29,11 @@ typedef void (*adc_cb_t)(void);
  * and sourcing the ADC's clock from the ADC12OSC (MODOSC), which is enabled only when used.
  *
  * @param resolution ADC's resolution. Possible values: RES8BIT, RES10BIT, RES12BIT.
- * @param input_select Selection for the analog input pin. This should have been 
- * initialized properly, by selecting the pin's module function.
- * @param interrupts Value of OR'ed selected interrupt sources.
+ * @param interrupts_0, _1, _2 Value of OR'ed selected interrupt sources.
  * @param start_address Channel to start sending conversion values to.
  */
-void configure_adc(uint16_t resolution, uint16_t input_select,
-                   uint16_t interrupts_2, uint16_t interrupts_1,
-                   uint16_t interrupts_0, uint8_t start_address);
+void configure_adc(uint16_t resolution, uint16_t interrupts_0, uint16_t interrupts_1, 
+                   uint16_t interrupts_2, uint8_t start_address);
 
 /**
  * Selects the reference voltage that is to be used for ADC readings.
@@ -56,8 +53,24 @@ void request_adc_values(void);
  */
 void set_adc_callback(adc_cb_t callback);
 
+/** 
+ * Sets upper and lower voltage thresholds for generating window comparator interrupts.
+ */
 void set_window_comparator_voltage(uint16_t low, uint16_t high);
 
-void enable_V_half_comparator_window(void);
+/**
+ * Enables an ADC channel for sourcing data.
+ * @param channel ADC channel, where results will be returned, goes from 0 to 32.
+ * @param input_select Select input source for ADC reading. This should have been 
+ * initialized properly, by selecting the pin's module function.
+ * @param vref_select Select reference voltage.
+ */
+void enable_channel(uint8_t channel, uint16_t input_select, uint16_t vref_select) 
+
+/**
+ * Enables the voltage window comparator to use the current source voltage divided by 2
+ * (Vhalf). 
+ */
+void enable_V_half_comparator_window(uint8_t channel);
 
 #endif
