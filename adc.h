@@ -60,7 +60,7 @@ void set_window_comparator_voltage(uint16_t low, uint16_t high);
 
 /**
  * Enables an ADC channel for sourcing data.
- * @param channel ADC channel, where results will be returned, goes from 0 to 32.
+ * @param channel ADC channel, where results will be returned, goes from 0 to 31.
  * @param input_select Select input source for ADC reading. This should have been 
  * initialized properly, by selecting the pin's module function.
  * @param vref_select Select reference voltage.
