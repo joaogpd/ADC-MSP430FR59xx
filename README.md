@@ -1,6 +1,6 @@
 # ADC-MSP430FR59xx
 
-Abstraction for accessing the ADC12B module in the MSP430FR59xx family of boards, by Texas Instruments.
+Hardware abstraction layer (HAL) for accessing the ADC12B module in the MSP430FR59xx family of boards, by Texas Instruments.
 
 There are commodity functions for enabling interrupts, configuring the ADC for operation, etc. This abstraction
 seeks higher energy efficiency, so the ADC is configured to use the least amount of power possible. Moreover, 
