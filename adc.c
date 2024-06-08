@@ -52,6 +52,18 @@ void enable_V_half_comparator_window(uint8_t channel)
     *(ADC12MCTLx(channel)) |= (ADC12WINC | ADC12VRSEL_1 | ADC12INCH_31); // Enable Window Comparator
 }
 
+int enable_channel_interrupt(uint8_t channel) {
+    if (channel <= 15) {
+        ADC12IER0 |= (1 << channel);
+    } else if (channel <= 31) {
+        ADC12IER1 |= (1 << (channel - 16));
+    } else {
+        return -1;
+    }
+
+    return 0;
+}
+
 #if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
 #pragma vector = ADC12_VECTOR
 __interrupt void ADC12_ISR(void)

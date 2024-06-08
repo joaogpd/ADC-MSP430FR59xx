@@ -76,4 +76,12 @@ void enable_channel(uint8_t channel, uint16_t input_select, uint16_t vref_select
  */
 void enable_V_half_comparator_window(uint8_t channel);
 
+/**
+ * Enables the interrupt on a given channel's conversion memory address. 
+ *
+ * @param channel Value of the channel, possible values are 0 up to 31. If
+ * it extrapolates this range, the function will do nothing and return -1.
+ */
+int enable_channel_interrupt(uint8_t channel);
+
 #endif
