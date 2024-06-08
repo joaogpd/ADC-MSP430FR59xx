@@ -21,6 +21,9 @@
 #define VREF20 REFVSEL_1 // 2.0V
 #define VREF25 REFVSEL_2 // 2.5V
 
+#define ADC12MCTLx_BASE (uint16_t*)(ADC12_B_BASE + OFS_ADC12MCTL0)
+#define ADC12MCTLx(channel) (uint16_t*)(ADC12MCTLx_BASE + (2 * channel))
+
 typedef void (*adc_cb_t)(void);
 
 /**
