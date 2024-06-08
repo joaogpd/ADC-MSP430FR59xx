@@ -1,12 +1,9 @@
-#include <adc.h>
+#include "adc.h"
 
 adc_cb_t adc_callback = NULL;
 
-#define ADC12MCTLx_BASE (ADC12_B_BASE + OFS_ADC12MCTL0)
-#define ADC12MCTLx(channel) (uint16_t*)(ADC12MCTLx_BASE + (2 * channel))
-
 void configure_adc(uint16_t resolution, uint16_t interrupts_0, uint16_t interrupts_1,
-                   uint16_t interrupts_2, uint8_t start_address)
+                   uint16_t interrupts_2, uint16_t start_address)
 {
     ADC12IFGR0 = 0x00;
     ADC12IFGR1 = 0x00;

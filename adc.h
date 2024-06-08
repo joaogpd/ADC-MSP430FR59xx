@@ -33,7 +33,7 @@ typedef void (*adc_cb_t)(void);
  * @param start_address Channel to start sending conversion values to.
  */
 void configure_adc(uint16_t resolution, uint16_t interrupts_0, uint16_t interrupts_1, 
-                   uint16_t interrupts_2, uint8_t start_address);
+                   uint16_t interrupts_2, uint16_t start_address);
 
 /**
  * Selects the reference voltage that is to be used for ADC readings.
